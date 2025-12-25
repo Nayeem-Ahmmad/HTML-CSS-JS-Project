@@ -1,8 +1,6 @@
 
 //In the name of allah
 
-const { createElement } = require("react");
-
 function showHoriTab(event, id){
 
     document.querySelectorAll('.hori-box').forEach(box => {
@@ -295,16 +293,17 @@ function FinalDisplay( a, op, b, res ){
     display.innerText = result;
 }
 
-//function history_update(){
+// function updateHistory(){
+
 //     let historyList = document.createElement("li");
 //     historyList.classList.add("list-style");
-    
+
 //     historyList.innerHTML = `
-//         <span class = "list-style"> hello </span>
-//     `;
-    
+//         <span>hello</span>
+//     `
 //     history.appendChild(historyList);
 // }
-// history_update();
+
+
 // Calcultor code end
 //////////////////////////////
