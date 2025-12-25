@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>First App</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://kit.fontawesome.com/7073bca9ee.js" crossorigin="anonymous"></script>
+</head>
+<body>
+
+<div class="container">
+
+    <!-- Horizontal Tabs -->
+    <div class="hori-tab navBar">
+        <div class="hori-tab">
+            <button class="hori-btn active" onclick="showHoriTab(event,'tab1')">List</button>
+            <button class="hori-btn" onclick="showHoriTab(event,'tab2')">Two</button>
+            <button class="hori-btn" onclick="showHoriTab(event,'tab3')">Three</button>
+        </div>
+        <div class="logIn">
+            <button class="log">Log In</button>
+            <button class="log">Sign Up</button>
+        </div>
+    </div>
+
+    <!-- Horizontal Contents -->
+    <div class="hori-content">
+
+        <!-- Tab 1 -->
+        <div id="tab1" class="hori-box active-box">
+
+            <div class="vertical-wrapper">
+
+                <!-- Vertical Buttons -->
+                <div class="vertical-btns">
+                    <button class="ver-btn active" onclick="showVerTab(event,'v1')">ToDo List</button>
+                    <button class="ver-btn" onclick="showVerTab(event,'v11')">Calculator</button>
+                </div>
+
+                <!-- Vertical Contents -->
+                <div class="vertical-content">
+
+                    <!-- ToDo -->
+                    <div id="v1" class="ver-box active-box">
+                        <div class="container">
+                            <div class="card">
+                                <h1 class="todoTytle">ToDo List</h1>
+                                <div class="todoBody">
+                                    <form class="todoForm">
+                                        <input type="text" class="todoinput" placeholder="Enter a ToDo Here">
+                                        <button type="submit" class="btn">Add ToDo</button>
+                                    </form>
+                                    <div class="message">
+                                        <p class="statusMes"></p>
+                                    </div>
+                                    <div class="listTodo">
+                                        <ul class="todoList TODO"></ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Calculator -->
+                    <div id="v11" class="ver-box">
+                        <div class="faltu">
+                            <div class="calculator">
+                                <div class="display">0
+                                </div>
+                                <button class="action" onclick="clearAll('AC')">AC</button>
+                                <button class="action" onclick="clearOne('DEL')">
+                                    <i class="fa-solid fa-delete-left"></i>
+                                </button>
+                                <button class="operator" onclick="operatorOperation('%')">%</button>
+                                <button class="operator" onclick="operatorOperation('/')">÷</button>
+
+                                <button onclick="GetNumber('7')">7</button>
+                                <button onclick="GetNumber('8')">8</button>
+                                <button onclick="GetNumber('9')">9</button>
+                                <button class="operator" onclick="operatorOperation('*')">×</button>
+
+                                <button onclick="GetNumber('4')">4</button>
+                                <button onclick="GetNumber('5')">5</button>
+                                <button onclick="GetNumber('6')">6</button>
+                                <button class="operator" onclick="operatorOperation('-')">-</button>
+
+                                <button onclick="GetNumber('1')">1</button>
+                                <button onclick="GetNumber('2')">2</button>
+                                <button onclick="GetNumber('3')">3</button>
+                                <button class="operator" onclick="operatorOperation('+')">+</button>
+
+                                <button class="zeroA" onclick="GetNumber('0')">0</button>
+                                <button onclick="GetNumber('.')">.</button>
+                                <button class="operator" onclick="finalResult('=')">=</button>
+                            </div>
+
+                            <!-- <div class="calculationHistory">
+                                <h4>History Comming Soon....</h4>
+                                <ul class="history">
+                                    <li>heelo</li>
+                                </ul>
+                            </div> -->
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <!-- Tab 2 -->
+        <div id="tab2" class="hori-box">
+            <p>Hello</p>
+        </div>
+
+        <!-- Tab 3 -->
+        <div id="tab3" class="hori-box">
+            <p>Welcome</p>
+        </div>
+
+    </div>
+</div>
+
+<footer>
+    <p class="copy">&copy; <span id="year"></span>
+        <a href="https://github.com/Nayeem-Ahmmad" target="_blank" class="myLink">Nayeem Ahmmad</a>.
+        All rights reserved.
+    </p>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>

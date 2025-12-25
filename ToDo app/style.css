@@ -1,0 +1,319 @@
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html{
+    scroll-behavior: smooth;
+}
+
+/* .container{
+    height: 100vh;
+    width: 100%;
+    background: #333;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+} */
+
+.card{
+    background-color: #222;
+    color: white;
+    margin: 0;
+    width: 100%;
+    height: 100vh;
+    text-align: center;
+    padding: 20px;
+    box-shadow: 1px 1px 1px rgb(7, 0, 0);
+    overflow-y: auto;
+}
+
+/* new add */
+
+.todoForm{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.todoTytle{
+    font-size: 35px;
+    margin-bottom: 10px;
+}
+
+input{
+    border: none;
+    padding: 7px;
+    width: 80%;
+    border-radius: 10px;
+    outline: none;
+}
+
+.deleteButton:hover{
+    color: white;
+}
+
+.btn{
+    padding: 7px;
+    width: 10%;
+    border-radius: 10px;
+    border: none;
+    background: orange;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 7px;
+    margin-left: 4px;
+}
+.btn:hover{
+    background: green;
+}
+
+
+.todobtn:hover{
+    background-color: red;
+}
+.listTodoDivider{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: auto;
+    width: 80%;
+}
+
+.todoList{
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    transition: 0.5s;
+}
+
+.important li:hover{
+    border: 1px solid #ddd;
+}
+.todoList li:hover{
+    border: 1px solid #ddd;
+}
+
+.important{
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    transition: 0.5s;
+}
+
+.side{
+    display: flex;
+    justify-content: space-around;
+    padding: 15px 0px;
+}
+.message{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.status{
+    margin: 0.5rem 0;
+    padding: 0.5rem;
+    color: white;
+    background-color: #1f811f;
+    border-left: 35px solid #04aa6d;
+    width: 80%;
+    text-align: center;
+    border-radius: 0.6rem;
+}
+.danger{
+    margin: 0.5rem 0;
+    padding: 0.5rem;
+    color: white;
+    background-color: #d41d1d;
+    border-left: 35px solid #0db62f;
+    width: 80%;
+    text-align: center;
+    border: none;
+    border-radius: 0.6rem;
+}
+.list-style{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #333;
+    color: white;
+    padding: 0.5rem;
+    border-radius: 0.6rem;
+    text-align: justify;
+    margin: 0.5rem 0;
+    width: 80%px;
+    transition: all 0.5s;
+    padding-left: 15px;
+    padding-right: 10px;
+}
+.textValue{
+    padding-left: 15px;
+    padding-right: 15px;
+}
+.todobtn{
+    background-color: orange;
+    border: none;
+    border-radius: 0.5rem;
+    padding: 0.5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 80%;
+    cursor: pointer;
+}
+
+
+
+input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
+  cursor: pointer;
+  accent-color: #4caf50; /* green */
+}
+ 
+
+.todoBody{
+    align-items: center;
+}
+
+.done{
+    text-decoration: line-through;
+    color: gray;
+    text-align: justify;
+}
+
+/* add new item */
+.hbtn{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding-top: 20px;
+    position: relative;
+    top: -10px;
+    transition: all 0.5s;
+}
+.delect{
+    position: absolute;
+    top: 2px;
+    display: none;
+    transition: all 0.5s;
+}
+.hbtn:hover .delect{
+    display: block;
+    font-size: 12px;
+    background: red;
+    color: white;
+    border: none;
+    padding-left: 5px;
+    padding-right: 5px;
+    padding-bottom: 2px;
+    padding-top: 2px;
+    border-radius: 50px;
+    transition: all 0.5s;
+    font-weight: bold;
+}
+
+.hbtn:hover .todobtn i{
+    color: white;
+}
+.hbtn:hover .todobtn{
+    background: red;
+}
+
+.textValue{
+    padding: 10px 30px;
+    font-size: 20px;
+}
+
+.copy{
+    background-color: #333333;
+    font-family: times New Roman;
+    font-size: 12px;
+    letter-spacing: 2px;
+    text-align: center;
+    padding: 10px 0px;
+    color: white;
+}
+
+.newItems{
+    text-decoration: line-through;
+    color: gray;
+}
+
+/* 1. Very Small Phones (0–320px) */
+@media (max-width: 320px) {
+    .todoBoday {
+        display: block;
+    }
+    .btn {
+        margin-top: 8px;
+        width: 90%;
+    }
+}
+
+/* 2. Small Phones (321–480px) */
+@media (max-width: 480px) {
+    .todoBoday {
+        display: flex;
+        flex-direction: column;
+    }
+    .btn {
+        margin-top: 10px;
+        width: 85%;
+    }
+}
+
+/* 3. Smartphones (481–768px) */
+@media (max-width: 768px) {
+    .todoBoday {
+        display: flex;
+        flex-direction: row;
+    }
+    .btn {
+        margin-top: 10px;
+        width: 80%;
+    }
+}
+
+/* 4. Tablets (769–1024px) */
+@media (max-width: 1024px) {
+    .todoBoday {
+        display: flex;
+        flex-direction: row;
+    } 
+    .btn {
+        margin-top: 10px;
+        width: 80%;
+    }
+}
+
+/* 5. Laptops (1025–1440px) */
+@media (max-width: 1440px) {
+    .todoBoday {
+        display: flex;
+    }
+    .btn {
+        margin-top: 10px;
+        width: 80%;
+    }
+}
+
+/* 6. Large Screens (1441px–up) */
+@media (min-width: 1441px) {
+    .todoBoday {
+        display: flex;
+    }
+    .btn {
+        margin-top: 10px;
+        width: 80%;
+    }
+}

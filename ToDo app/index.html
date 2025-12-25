@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ToDo List</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://kit.fontawesome.com/7073bca9ee.js" crossorigin="anonymous"></script>
+</head>
+<body>
+   
+
+    <div class="container">
+        <div class="card">
+            <h1 class="todoTytle">ToDo App</h1>
+            <div class="todoBody">
+                <form class="todoForm">
+                    <input type="text" class="todoinput" placeholder="Enter a ToDo Here">
+                    <button type="submit" class="btn">Add ToDo</button>
+                </form>
+                <div class="message">
+                    <p class="statusMes"></p>
+                </div>
+                <div class="side">
+                    <h2>Normal</h2>
+                    <h2>Important</h2>
+                </div>
+
+                <div class="listTodoDivider">
+                    <ul class="todoList"></ul>
+                    <ul class="important"></ul>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <footer>
+         <p class="copy">&copy; <span id="year"></span> Nayeem Ahmmad. All rights reserved.</p>
+    </footer>
+    <script src="script.js"></script>
+</body>
+</html>
+

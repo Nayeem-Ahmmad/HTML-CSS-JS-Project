@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vertica Tab</title>
+
+    <!-- css linked -->
+    <link rel="stylesheet" href="style.css">
+
+</head>
+<body>
+
+    <div class="title">
+        <h2>Vertical Tab</h2>
+        <p>Click on the buttons inside the tabbed menu</p>
+    </div>
+
+    <div class="tabContainer">
+
+        <div class="tabButtons">
+            <button id="defaultOpen" class="buttonLink" onclick="showTab(event, '1')">one</button>
+            <button class="buttonLink" onclick="showTab(event, '2')">two</button>
+            <button class="buttonLink" onclick="showTab(event, '3')">three</button>
+            <button class="buttonLink" onclick="showTab(event, '4')">four</button>
+            <button class="buttonLink" onclick="showTab(event, '5')">five</button>
+        </div>
+
+        <div class="tabs">
+            <div id="1" class="tab">
+                <h2>One</h2>
+                <p>Lorem ipsum dolor sit.</p>
+            </div>
+            <div id="2" class="tab">
+                <h2>Two</h2>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Praesentium, magni.</p>
+            </div>
+            <div id="3" class="tab">
+                <h2>Three</h2>
+                <p>Lorem, ipsum dolor sit amet consectetur adipisicing.</p>
+            </div>
+            <div id="4" class="tab">
+                <h2>Four</h2>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Asperiores rerum molestiae iusto in id fugiat et magni velit ad iste.</p>
+            </div>
+            <div id="5" class="tab">
+                <h2>Five</h2>
+                <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Obcaecati asperiores laborum ratione impedit.</p>
+            </div>
+        </div>
+
+    </div>
+    
+    <script src="script.js"></script>
+</body>
+</html>

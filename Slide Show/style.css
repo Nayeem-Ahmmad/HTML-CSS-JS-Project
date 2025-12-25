@@ -1,0 +1,45 @@
+
+*{
+    margin: 0;
+    padding: 0;
+    background: rgb(197, 197, 226);
+}
+
+.slide_show_container{
+    width: 90%;
+    margin: auto;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.slide_show_elements{
+    border: solid black 2px;
+    text-align: center;
+    color: rgb(230, 12, 12);
+}
+
+.blue{
+    color: blue;
+}
+.green{
+    color: green;
+}
+.red{
+    color: rgb(240, 112, 21);
+}
+
+.slide_show_element{
+    width: 70%;
+    padding: 10px;
+    font-size: 10rem;
+    position: absolute;
+    transform: translate(-50%, -50%) scale(0);
+    transition: 1s;
+}
+
+.slide_show_element.current{
+    transform: translate(-50%, -50%) scale(1);
+    transition: 1s;
+}

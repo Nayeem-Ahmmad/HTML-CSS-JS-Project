@@ -1,0 +1,413 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+body{
+    background: #777;
+    font-family: Arial, sans-serif;
+}
+
+/* Horizontal */
+.hori-tab{
+    display: flex;
+    background: #f1f1f1;
+    justify-content: space-between;
+    padding-left: 20px;
+    padding-right: 30px;
+}
+
+.logIn{ display: flex; }
+.log{
+    border: none;
+    padding: 0 15px;
+    cursor: pointer;
+}
+.log:hover{ background-color: #ddd; }
+
+.hori-btn{
+    padding: 14px 20px;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+}
+.hori-btn:hover{ background: #ccc; }
+.hori-btn.active{ background: #ddd; }
+
+.hori-content{
+    background: #fff;
+    padding: 20px;
+    height: calc(100vh - 60px);
+    overflow: hidden;
+}
+
+.hori-box{
+    display: none;
+    margin: 0;
+    height: 100%;
+}
+
+/* Vertical */
+.vertical-wrapper{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #f1f1f1;
+    border: 1px solid #ccc;
+    height: 100%;
+}
+
+.vertical-btns{
+    width: 25%;
+    background: #f1f1f1;
+    display: flex;
+    flex-direction: column;
+    border-right: 1px solid #ccc;
+    height: 100%;
+}
+.vertical-btns button{ padding-left: min(50px, 15%); }
+
+.ver-btn{
+    padding: 12px;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    text-align: left;
+}
+.ver-btn:hover{ background: #ddd; }
+.ver-btn.active{ background: #ccc; }
+
+.vertical-content{
+    width: 75%;
+    padding: 15px;
+    height: 100%;
+    overflow-y: auto;
+}
+
+.ver-box{
+    display: none;
+    height: 100%;
+}
+
+.hori-box.active-box,
+.ver-box.active-box{
+    display: block;
+}
+
+#v11.active-box{ display: flex; }
+
+/* ================= ToDo ================= */
+/* for ToDo lis */
+
+.card{
+    background-color: #222;
+    color: white;
+    margin: 0;
+    width: 100%;
+    height: 100vh;
+    text-align: center;
+    padding: 20px;
+    box-shadow: 1px 1px 1px rgb(7, 0, 0);
+    overflow: hidden;
+}
+
+/* new add */
+
+.TODO .todayDate{
+    font-size: 10px;
+    font-weight: bold;
+    text-align: center;
+    color: rgba(255, 255, 255, 0.452);
+}
+
+.todoForm{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.todoTytle{
+    font-size: 35px;
+    margin-bottom: 10px;
+}
+
+.todoForm input{
+    border: none;
+    padding: 7px;
+    width: 80%;
+    border-radius: 10px;
+    outline: none;
+}
+
+.deleteButton:hover{
+    color: white;
+}
+
+.btn{
+    padding: 7px;
+    width: 80%;
+    border-radius: 10px;
+    border: none;
+    background: orange;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 7px;
+    margin-left: 4px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+.btn:hover{
+    background: green;
+}
+
+.todobtn:hover{
+    background-color: red;
+}
+
+.listTodo{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 80%;
+    margin: auto;
+}
+
+.TODO{
+    width: 100%;
+    margin: auto;
+}
+
+.listTodo li:hover{
+    border: 1px solid;
+}
+
+.TODO li .textValue{
+    display: flex;
+    width: 100%;
+    padding-left: 15px;
+    padding-right: 15px;
+    text-align: left;
+    display: inline-block;
+    text-overflow: ellipsis;
+}
+
+.message{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.status{
+    margin: 0.5rem 0;
+    padding: 0.5rem;
+    color: white;
+    background-color: #1f811f;
+    border-left: 35px solid #04aa6d;
+    width: 80%;
+    text-align: center;
+    border-radius: 0.6rem;
+}
+
+.danger{
+    margin: 0.5rem 0;
+    padding: 0.5rem;
+    color: white;
+    background-color: #d41d1d;
+    border-left: 35px solid #0db62f;
+    width: 80%;
+    text-align: center;
+    border: none;
+    border-radius: 0.6rem;
+}
+
+.list-style{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #333;
+    color: white;
+    padding: 0.5rem;
+    border-radius: 0.6rem;
+    text-align: justify;
+    margin: 1rem 0;
+    width: 80%px;
+    transition: all 0.5s;
+    padding-left: 15px;
+    padding-right: 10px;
+}
+
+.todobtn{
+    background-color: orange;
+    border: none;
+    border-radius: 0.5rem;
+    padding: 0.5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 80%;
+    cursor: pointer;
+}
+
+.TODO input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
+  cursor: pointer;
+  accent-color: #4caf50;
+}
+
+.todoBody{
+    align-items: center;
+}
+
+.done{
+    text-decoration: line-through;
+    color: gray;
+    text-align: justify;
+}
+
+/* add new item */
+.hbtn{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding-top: 20px;
+    position: relative;
+    top: -10px;
+    transition: all 0.5s;
+}
+
+.delect{
+    position: absolute;
+    top: 2px;
+    display: none;
+    transition: all 0.5s;
+}
+
+.hbtn:hover .delect{
+    display: block;
+    font-size: 12px;
+    background: red;
+    color: white;
+    border: none;
+    padding-left: 5px;
+    padding-right: 5px;
+    padding-bottom: 2px;
+    padding-top: 2px;
+    border-radius: 50px;
+    transition: all 0.5s;
+    font-weight: bold;
+}
+
+.hbtn:hover .todobtn i{
+    color: white;
+}
+
+.hbtn:hover .todobtn{
+    background: red;
+}
+
+/* for ToDo list end */
+
+/* ================= Calculator ================= */
+
+#v11 .calculator{
+    display: grid;
+    gap: 10px;
+    grid-template-columns: repeat(4, 1fr);
+    background-color: hsl(0, 0%, 10%);
+    border-radius: 10px;
+    width: 300px;
+    padding: 25px;
+}
+
+#v11 .faltu{
+    display: grid;
+    place-items: center;
+    width: 100%;
+}
+
+#v11 button{
+    cursor: pointer;
+    width: 50px;
+    height: 50px;
+    border: none;
+    background-color: hsl(0, 0%, 40%);
+    border-radius: 50px;
+    color: white;
+    font-size: 17px;
+}
+#v11 button:hover{
+    background-color: hsl(0, 0%, 60%);
+}
+#v11 button:active{
+    background-color: hsl(0, 0%, 80%);
+}
+#v11 .display{
+    grid-column: span 4;
+    text-align: right;
+    padding: 20px;
+    font-size: 1.5rem;
+    background-color: hsl(0, 0%, 35%);
+    color: white;
+    overflow: hidden;
+    border-radius: 20px;
+    border: 2px solid rgba(255, 255, 255, 0.486);
+}
+
+#v11 .zeroA{
+    grid-column: span 2;
+    width: 110px;
+}
+
+#v11 .operator{ background: hsl(39, 100%, 50%); }
+#v11 .operator:hover{ background: hsl(39, 100%, 70%); }
+#v11 .operator:active{ background: hsl(39, 100%, 90%); }
+#v11 .action{
+    background-color: hsl(0, 100%, 50%);
+}
+#v11 .action:hover{
+    background-color: hsl(0, 100%, 70%);
+}
+#v11 .action:active{
+    background-color: hsl(0, 100%, 80%);
+}
+
+#v11 .faltu{
+    display: flex;
+    gap: 20px;
+}
+
+/* Footer */
+.copy{
+    background-color: #333;
+    font-size: 12px;
+    letter-spacing: 2px;
+    text-align: center;
+    padding: 10px 0;
+    color: dodgerblue;
+}
+.myLink{
+    color: rgb(64, 241, 173);
+    font-weight: bold;
+    text-transform: uppercase;
+    text-decoration: none;
+}
+
+
+/* Media Query */
+
+@media (max-width: 760px) {
+  #v11 .faltu {
+    display: flex;
+    flex-direction: column;
+  }
+  #v11 .calculationHistory{
+    padding: 20px 0px;
+  }
+}
