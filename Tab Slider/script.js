@@ -291,18 +291,39 @@ function FinalDisplay( a, op, b, res ){
     }
     let result = `${a} ${op} ${b} = ${res}`;
     display.innerText = result;
+    updateHistory(result);
 }
 
-// function updateHistory(){
 
-//     let historyList = document.createElement("li");
-//     historyList.classList.add("list-style");
 
-//     historyList.innerHTML = `
-//         <span>hello</span>
-//     `
-//     history.appendChild(historyList);
-// }
+let history = document.querySelector(".history");
+
+function updateHistory(text) {
+    let historyList = document.createElement("li");
+    historyList.classList.add("list-style11");
+    historyList.innerHTML = `<span>${text}</span>`;
+    history.appendChild(historyList);
+
+    saveToSession(text);
+}
+
+function saveToSession(text) {
+    let oldHistory = JSON.parse(sessionStorage.getItem("calcHistory")) || [];
+    oldHistory.push(text);
+    sessionStorage.setItem("calcHistory", JSON.stringify(oldHistory));
+}
+
+// Optional: load if you want within same session
+function loadHistory() {
+    let oldHistory = JSON.parse(sessionStorage.getItem("calcHistory")) || [];
+    oldHistory.forEach(item => {
+        let li = document.createElement("li");
+        li.classList.add("list-style11");
+        li.innerHTML = `<span>${item}</span>`;
+        history.appendChild(li);
+    });
+}
+
 
 
 // Calcultor code end
