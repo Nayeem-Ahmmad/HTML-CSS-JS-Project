@@ -110,7 +110,7 @@ body{
     text-align: center;
     padding: 20px;
     box-shadow: 1px 1px 1px rgb(7, 0, 0);
-    overflow: hidden;
+    overflow-y: scroll;
 }
 
 /* new add */
@@ -180,6 +180,45 @@ body{
 .TODO{
     width: 100%;
     margin: auto;
+}
+
+.TODO li{
+    border: 1px solid red;
+    position: relative;
+}
+
+.TODO li::before{
+    content: "hello";
+    position: absolute;
+    width: 25%;
+    top: 0;
+    left: 0;
+    font-size: 14px;
+    color: hsl(0, 0%, 25%);
+    border-radius: 10px;
+    top: -20px;
+    left: 70px;
+    text-align: center;
+    background-color: hsl(0, 0%, 80%);
+    opacity: 0;
+    transition: opacity 0.5s;
+}
+
+.TODO li::after{
+    content: "";
+    position: absolute;
+    border-top: 7px solid hsl(0, 0%, 80%);
+    border-left: 7px solid transparent;
+    border-right: 7px solid transparent;
+    top: -6px;
+    left: 95px;
+    opacity: 0;
+    transition: opacity 0.5s;
+}
+
+.TODO li:hover::before,
+.TODO li:hover::after{
+    opacity: 1;
 }
 
 .listTodo li:hover{
@@ -289,9 +328,19 @@ body{
     transition: all 0.5s;
 }
 
+.delect::after{
+    content: "";
+    border-top: 4px solid red;
+    border-left: 4px solid transparent;
+    border-right: 4px solid transparent;
+    position: absolute;
+    top: 15px;
+    left: 15px;
+}
+
 .hbtn:hover .delect{
     display: block;
-    font-size: 12px;
+    font-size: 10px;
     background: red;
     color: white;
     border: none;
@@ -330,6 +379,7 @@ body{
     display: grid;
     place-items: center;
     width: 100%;
+    overflow-y: scroll;
 }
 
 #v11 button{
