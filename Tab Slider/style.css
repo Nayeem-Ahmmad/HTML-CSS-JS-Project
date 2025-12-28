@@ -25,6 +25,12 @@ body{
     padding: 0 15px;
     cursor: pointer;
 }
+
+.todoForm .todoinput{
+    padding: 15px;
+    font-size: 16px;
+}
+
 .log:hover{ background-color: #ddd; }
 
 .hori-btn{
@@ -188,11 +194,12 @@ body{
 }
 
 .TODO li::before{
-    content: "hello";
+    content: var(--before-text, "Nayeem");
     position: absolute;
-    width: 25%;
+    width: 20%;
     top: 0;
     left: 0;
+    padding: 8px;
     font-size: 14px;
     color: hsl(0, 0%, 25%);
     border-radius: 10px;
@@ -210,7 +217,7 @@ body{
     border-top: 7px solid hsl(0, 0%, 80%);
     border-left: 7px solid transparent;
     border-right: 7px solid transparent;
-    top: -6px;
+    top: 11px;
     left: 95px;
     opacity: 0;
     transition: opacity 0.5s;

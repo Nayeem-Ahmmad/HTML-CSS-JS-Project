@@ -32,17 +32,17 @@ function showVerTab(event, id){
 }
 
 
-// ToDo list added..
-//////////////////////////////////////////////////////
-//////////////////////////////////////////////////////
-// html element finding
+/////////////////////
+// Kto din age todo ta created kora hoyeche seta dekhab....
+
+// HTML selectors
 const container = document.querySelector(".container");
 const todoForm = container.querySelector(".todoForm");
 const inputTodo = container.querySelector(".todoinput");
 const todoList = container.querySelector(".todoList");
 const message = container.querySelector(".statusMes");
 
-// show status message
+// Show status message
 const showStatusMessage = (text, status) => {
     message.textContent = text;
     message.classList.add(`${status}`);
@@ -50,150 +50,301 @@ const showStatusMessage = (text, status) => {
         message.textContent = "";
         message.classList.remove(`${status}`);
     }, 2000);
+    alert("Todo created successfully")
 };
 
-// get todos from localStorage
+// Get todos from localStorage
 const getTodosLocal = () => {
     return localStorage.getItem("mytodos") ? JSON.parse(localStorage.getItem("mytodos")) : [];
 };
 
-// save todos to localStorage
+// Save todos to localStorage
 const saveTodosLocal = (todos) => {
     localStorage.setItem("mytodos", JSON.stringify(todos));
 };
-//get today date formatted
 
-const getDateFormat = () =>{
+// Get today date in your format (for display)
+const getDateFormat = () => {
     const today = new Date();
     const day = today.getDate();
     const year = today.getFullYear();
-
-    const monthNames = [
-        "Jan", "Feb", "Mar", "Apr", "May", "Jun",
-        "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"
-    ];
-
-
+    const monthNames = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
     const month = monthNames[today.getMonth()];
     return `${day} ${month}, ${year}`;
-}
-// create todo
-const createTodo = (id, value, done = false) => {
+};
 
+// Calculate X days ago
+const getDaysAgo = (dateString) => {
+    const createdDate = new Date(dateString);
+    const today = new Date();
+    const diffTime = today - createdDate;
+    const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
 
+    if (diffDays === 0) return "today";
+    if (diffDays === 1) return "1 day ago";
+    return `${diffDays} days ago`;
+};
+
+// Create todo
+const createTodo = (id, value, done = false, CreatedAt = null) => {
     const todoElement = document.createElement("li");
     todoElement.id = id;
     todoElement.classList.add("list-style");
 
     todoElement.innerHTML = `
-        <span>
-            <label>
-                <input type="checkbox" class="agree">
-            </label>
-        </span>
-
+        <span><label><input type="checkbox" class="agree"></label></span>
         <span class="textValue">${value}</span>
-       <span class = "todayDate"></span>
+        <span class="todayDate"></span>
         <span class="hbtn">
             <p class="delect"> Delete </p>
-            <button class="todobtn deleteButton"> 
-                <i class="fa-solid fa-trash"></i>
-            </button> 
+            <button class="todobtn deleteButton"><i class="fa-solid fa-trash"></i></button> 
         </span>
     `;
 
-    // get elements inside this todo
-    const hover = todoElement.querySelector(".hvr");
+    // FIX: hover popup text X days ago
+    if (!CreatedAt) {
+        const temp = new Date().toISOString();
+        todoElement.dataset.created = temp;
+        todoElement.style.setProperty('--before-text', `"${getDaysAgo(temp)}"`);
+    } else {
+        todoElement.dataset.created = CreatedAt;
+        todoElement.style.setProperty('--before-text', `"${getDaysAgo(CreatedAt)}"`);
+    }
+
     const checkbox = todoElement.querySelector(".agree");
     const text = todoElement.querySelector(".textValue");
     const deleteButton = todoElement.querySelector(".deleteButton");
 
     todoElement.querySelector(".todayDate").innerText = getDateFormat();
-    // const today = getDateFormat();
-    // console.log(today);
-    // showDate.innerContext = today;
 
-    // set initial checkbox state & line-through
     checkbox.checked = done;
     text.classList.toggle("done", done);
 
-    // checkbox change event
+    // Checkbox change
     checkbox.addEventListener("change", () => {
         text.classList.toggle("done", checkbox.checked);
-
-        // update localStorage
         const todos = getTodosLocal();
         const index = todos.findIndex(todo => todo.id === id);
-        if(index !== -1){
+        if (index !== -1) {
             todos[index].done = checkbox.checked;
             saveTodosLocal(todos);
         }
         renderTodos();
-        renderTodos();
     });
 
-    // delete todo
+    // Delete
     deleteButton.addEventListener("click", () => {
-         if( confirm("Are you sure you want to delete this ToDo?") ){
-            todoElement.remove();
-            // remove from localStorage
-            let todos = getTodosLocal();
-            todos = todos.filter(todo => todo.id !== id);
+        if (confirm("Are you sure you want to delete this ToDo?")) {
+            let todos = getTodosLocal().filter(todo => todo.id !== id);
             saveTodosLocal(todos);
             renderTodos();
             showStatusMessage("", "");
-        }else{
-            return;
+            alert("Todo Deleted Successfully");
         }
     });
 
     todoList.appendChild(todoElement);
-    
 };
 
-// add todo
+// Add todo
 const addTodo = (event) => {
     event.preventDefault();
     const todoValue = inputTodo.value.trim();
-    if(todoValue === "") return;
+    if (todoValue === "") return;
 
     const id = Date.now().toString();
 
-    // create todo
-    createTodo(id, todoValue);
+    // NEW: store actual date in ISO format
+    const createdAt = new Date().toISOString();
 
-    // add to localStorage
+    createTodo(id, todoValue, false, createdAt);
+
     const todos = getTodosLocal();
-    todos.push({id, todoValue, done: false});
+    todos.push({id, todoValue, done: false, CreatedAt: createdAt});
     saveTodosLocal(todos);
 
     renderTodos();
-    showStatusMessage("ToDo is Created", "status");
+    if( alert("Are you sure create a todo?") ){
+        showStatusMessage("Todo is created", "status");
+    }
     inputTodo.value = "";
 };
 
-// load todos on page load
+// Load todos
 const loadTodos = () => {
     const todos = getTodosLocal();
-    todos.sort((a, b) =>{
-        return ( b.done === false ) - ( a.done === false );
-    })
-    todos.forEach(todo => createTodo(todo.id, todo.todoValue, todo.done));
+    todos.sort((a,b) => a.done - b.done);
+    todos.forEach(todo => createTodo(todo.id, todo.todoValue, todo.done, todo.CreatedAt || null));
 };
 
+// Render todos
 const renderTodos = () => {
     todoList.innerHTML = "";
     const todos = getTodosLocal();
-    // sort: done=false first, done=true later
-    todos.sort((a, b) => a.done - b.done);
-    todos.forEach(todo => createTodo(todo.id, todo.todoValue, todo.done));
+    todos.sort((a,b) => a.done - b.done);
+    todos.forEach(todo => createTodo(todo.id, todo.todoValue, todo.done, todo.CreatedAt || null));
 };
+
+// Update X days ago every minute
+setInterval(() => {
+    document.querySelectorAll(".TODO li").forEach(li => {
+        const date = li.dataset.created;
+        if (date) {
+            li.style.setProperty('--before-text', `"Created: ${getDaysAgo(date)}"`);
+        }
+    });
+}, 60000);
 
 todoForm.addEventListener("submit", addTodo);
 window.addEventListener("DOMContentLoaded", loadTodos);
 
 document.getElementById("year").textContent = new Date().getFullYear();
-// ToDo list end
+
+
+
+/// kto din age todo ta created korea hoyeche seta dekhab...code end..
+
+
+// // ToDo list added..
+// //////////////////////////////////////////////////////
+// //////////////////////////////////////////////////////
+
+// const container = document.querySelector(".container");
+// const todoForm = container.querySelector(".todoForm");
+// const inputTodo = container.querySelector(".todoinput");
+// const todoList = container.querySelector(".todoList");
+// const message = container.querySelector(".statusMes");
+
+// // show status message
+// const showStatusMessage = (text, status) => {
+//     message.textContent = text;
+//     message.classList.add(`${status}`);
+//     setTimeout(() => {
+//         message.textContent = "";
+//         message.classList.remove(`${status}`);
+//     }, 2000);
+// };
+
+// // get todos from localStorage
+// const getTodosLocal = () => {
+//     return localStorage.getItem("mytodos") ? JSON.parse(localStorage.getItem("mytodos")) : [];
+// };
+
+// // save todos to localStorage
+// const saveTodosLocal = (todos) => {
+//     localStorage.setItem("mytodos", JSON.stringify(todos));
+// };
+
+// // your date format function (used everywhere)
+// const getDateFormat = () =>{
+//     const today = new Date();
+//     const day = today.getDate();
+//     const year = today.getFullYear();
+//     const monthNames = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+//     const month = monthNames[today.getMonth()];
+//     return `${day} ${month}, ${year}`;
+// };
+
+// // create todo
+// const createTodo = (id, value, done = false, CreatedAt = null ) => {
+
+//     const todoElement = document.createElement("li");
+//     todoElement.id = id;
+//     todoElement.classList.add("list-style");
+
+//     todoElement.innerHTML = `
+//         <span><label><input type="checkbox" class="agree"></label></span>
+//         <span class="textValue">${value}</span>
+//         <span class="todayDate"></span>
+//         <span class="hbtn">
+//             <p class="delect"> Delete </p>
+//             <button class="todobtn deleteButton"><i class="fa-solid fa-trash"></i></button> 
+//         </span>
+//     `;
+
+//     // set hover popup date
+//     if(!CreatedAt){
+//         const temp = getDateFormat();
+//         todoElement.style.setProperty('--before-text', `"Created: ${temp}"`);
+//     } else {
+//         todoElement.dataset.created = CreatedAt;
+//         todoElement.style.setProperty('--before-text', `"Created: ${CreatedAt}"`);
+//     }
+
+//     const checkbox = todoElement.querySelector(".agree");
+//     const text = todoElement.querySelector(".textValue");
+//     const deleteButton = todoElement.querySelector(".deleteButton");
+
+//     todoElement.querySelector(".todayDate").innerText = getDateFormat();
+
+//     checkbox.checked = done;
+//     text.classList.toggle("done", done);
+
+//     checkbox.addEventListener("change", () => {
+//         text.classList.toggle("done", checkbox.checked);
+//         const todos = getTodosLocal();
+//         const index = todos.findIndex(todo => todo.id === id);
+//         if(index !== -1){
+//             todos[index].done = checkbox.checked;
+//             saveTodosLocal(todos);
+//         }
+//         renderTodos();
+//     });
+
+//     deleteButton.addEventListener("click", () => {
+//         if(confirm("Are you sure you want to delete this ToDo?")){
+//             let todos = getTodosLocal().filter(todo => todo.id !== id);
+//             saveTodosLocal(todos);
+//             renderTodos();
+//             showStatusMessage("", "");
+//         }
+//     });
+
+//     todoList.appendChild(todoElement);
+// };
+
+// // add todo
+// const addTodo = (event) => {
+//     event.preventDefault();
+//     const todoValue = inputTodo.value.trim();
+//     if(todoValue === "") return;
+
+//     const id = Date.now().toString();
+
+//     // created date (no time)
+//     const createdAt = getDateFormat();
+
+//     createTodo(id, todoValue, false, createdAt);
+
+//     const todos = getTodosLocal();
+//     todos.push({id, todoValue, done:false, CreatedAt: createdAt});
+//     saveTodosLocal(todos);
+
+//     renderTodos();
+//     showStatusMessage("ToDo is Created", "status");
+//     inputTodo.value = "";
+// };
+
+// // load todos on page load
+// const loadTodos = () => {
+//     const todos = getTodosLocal();
+//     todos.sort((a,b) => a.done - b.done);
+//     todos.forEach(todo => createTodo(todo.id, todo.todoValue, todo.done, todo.CreatedAt || null));
+// };
+
+// const renderTodos = () => {
+//     todoList.innerHTML = "";
+//     const todos = getTodosLocal();
+//     todos.sort((a,b) => a.done - b.done);
+//     todos.forEach(todo => createTodo(todo.id, todo.todoValue, todo.done, todo.CreatedAt || null));
+// };
+
+// todoForm.addEventListener("submit", addTodo);
+// window.addEventListener("DOMContentLoaded", loadTodos);
+
+// document.getElementById("year").textContent = new Date().getFullYear();
+// // ToDo list end
+
 
 /////////////////////////////
 // Calculator code started
